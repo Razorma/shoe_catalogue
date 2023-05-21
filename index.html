@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+  </head>
+
+<body>
+   <div class="main">
+    <div class="orderCart">
+      <div class="icon" >
+      <i class="bi bi-cart3 openCart" ></i>
+      <span class="totalCart">0</span>
+      </div>
+      <ul class="items" id="items">
+        <i class="bi bi-x closeCart" ></i>
+        <div class="listDiv">
+        <!-- <li ><a href="">item 1</a></li>
+        <li ><a href="">item 2</a></li>
+        <li ><a href="">item 3</a></li>
+        <li ><a href="">item 4</a></li> -->
+        <div id="busket">
+          
+        </div>
+        <div class="Total">Total R<span class="totalElem">0.00</span></div>
+        <div class="checkout"><button class="checkoutButton">checkout</button></div>
+        
+      </ul>
+    </div>
+    <div class="product">
+        <div class="photo"><img class="photos" src="Photos/white nike placeholder.jpg" alt="" width="250px" height="250px">
+            <div class="price">
+                <p class="center name">White Nike Shoes</p>
+                <p class="purchase"><span>R<span class="money">145</span></span><span class="cart" ><button class="buyButton"><i class="bi bi-cart3 cartAdd" >Buy</i><i class="bi bi-check-circle-fill"></i></button></span></p>
+            </div>
+        </div>
+        <div class="selectors">
+        <label  for="color" class="colorSelect"
+          ><p>Color:</p>
+          <select id="color" name="color" class="selectColor" >
+            <option value="" data-name="colors">Select Color</option>
+            <option value="black" data-name="Black">Black</option>
+            <option value="White" data-name="White">White</option>
+            <option value="blue" data-name="blue">blue</option>
+            <option value="Red" data-name="Red">Red</option>
+            <option value="Yellow" data-name="Red">Yellow</option>
+            <option value="black-and-white" data-name="black and White">black and White</option>
+          </select>
+        </label>
+        <label for="brand" class="brandSelect"
+          ><p>Brand:</p>
+          <select id="brand" name="brand" class="selectBrand">
+            <option value="" data-name="brands">Select Brand</option>
+            <option value="Nike" data-name="Nike">Nike</option>
+            <option value="adidas" data-name="adidas">adidas</option>
+            <option value="Puma" data-name="Puma">Puma</option>
+            <option value="Vans" data-name="Vans">Vans</option>
+            <option value="All-Star" data-name="All-Star">All Star</option>
+            <option value="Fila" data-name="Fila">Fila</option>
+          </select>
+        </label>
+        <label for="size" class="sizeSelect"
+          ><p>Size:</p>
+          <select id="size" name="size" class="selectSize">
+            <option value="" data-name="sizes">Select Size</option>
+            <option value="5" data-name="five">5</option>
+            <option value="6" data-name="six">6</option>
+            <option value="7" data-name="seven">7</option>
+            <option value="8" data-name="eight">8</option>
+          </select>
+        </label>
+        <input type="button" value="search" class="search">
+         
+        </div>
+        <p class="message center">We have <span class="amount">13</span> <span class="shoeColor">White</span> <span class="brandDisplay">Nike</span> shoes in stock</p>
+        
+        
+    </div>
+   </div> 
+   <script type="text/x-template" class="userTemplate">
+    {{#each list}}
+    <div class="cartShoe" >
+    <div class="cartPhotoDiv">
+      <img class="cartPhoto" 
+      src="{{this.photo}}" alt="" width="100%">
+    </div>
+    <div>
+      <p class="">{{this.name}}</p>
+      <p>R<span>{{this.price}}</span> size <span>{{this.size}}</span></p>
+      <p class="addSubtract center"><span class="minus">-</span> <span class="cartItemNumber">1</span> <span class="plus">+</span></p>
+    </div>
+    <i class="bi bi-trash3-fill" class="Bin"></i>
+    </div>
+    {{/each}}
+    
+   </script>
+   <!-- <div>{{this}}</div> -->
+</body>
+<script src="shoe-catalogue.js" charset="utf-8"></script>
+<script src="Dom/shoe_catalogue.js" charset="utf-8"></script>
+</html>
