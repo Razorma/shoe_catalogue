@@ -22,6 +22,7 @@ const buyButton = document.querySelector(".buyButton")
 const totalElem = document.querySelector(".totalElem")
 const totalCart = document.querySelector(".totalCart")
 
+
 openCartElem.addEventListener("click",function(){
     orderCart.style.right = "0";
 })
@@ -578,17 +579,15 @@ var shoes = [
     },
 
   ];
-addCart.addEventListener("click",function(){
 
-       
-})
 
   
 search.addEventListener("click",function(){
     shoeFunction.setTheShoe(shoes,selectColor.value,selectBrand.value,parseInt(selectSize.value))
+  
     if (JSON.stringify(shoeFunction.getShoe()) === JSON.stringify({})) {
         messageElem.classList.add("info")
-        messageElem.innerHTML = `we have no size ${selectSize.value} ${selectColor.value} ${selectBrand.value} left in storage`
+        messageElem.innerHTML = `We have no size ${selectSize.value} ${selectColor.value} ${selectBrand.value} left in storage`
         setTimeout(function () {
             messageElem.classList.remove("info")
             messageElem.innerHTML = '';
@@ -621,6 +620,15 @@ search.addEventListener("click",function(){
 // }
 addCart.addEventListener("click",function(){
     // shoeFunction.setTheShoe(shoes,selectColor.value,selectBrand.value,parseInt(selectSize.value))
+    if(JSON.stringify(shoeFunction.getShoe()) === JSON.stringify({})){
+        messageElem.classList.add("warning")
+        messageElem.innerHTML = `please enter color size and brand`
+        setTimeout(function () {
+            messageElem.classList.remove("warning")
+            messageElem.innerHTML = '';
+          }, 3500);
+    }
+
 
     const data = { list: shoeFunction.getAllShoe() };
 
@@ -638,14 +646,88 @@ addCart.addEventListener("click",function(){
     // console.log(shoeFunction.getAllShoe()[0].color)
     totalElem.innerHTML = shoeFunction.getTotalCost()
     
-    totalCart.innerHTML = 0|| shoeFunction.getAllShoe().length
+   
     if(shoeFunction.getAllShoe().length!=0){
+        totalCart.innerHTML = 0|| shoeFunction.getAllShoe().length
         buyEmote.style.fontSize = "0px";
         boughtEmote.style.fontSize = "15px";
         buyButton.style.backgroundColor = "blueviolet"
     }
 
 })
+// Get a reference to the parent container element
+var container = document.getElementById('busket');
+Handlebars.registerHelper('jsonStringify', function(context) {
+    return JSON.stringify(context);
+  });
+  
+// Add event listeners for the plus and minus buttons
+container.addEventListener('click', function(event) {
+
+    let priceElem = event.target.classList.contains('prices')
+    // console.log(priceElem.innerHTML)
+    
+    
+    if (event.target.classList.contains('bi-trash3-fill')) {
+    var cartItemNumberElement = event.target.parentElement.querySelector('.cartItemNumber');
+    var cartShoeElement = event.target.closest('.cartShoe');
+    var object = JSON.parse(cartShoeElement.getAttribute('data-object'));
+    var objectToRemove = object;
+
+    var index = allShoes.indexOf(objectToRemove);
+    // if (index !== -1) {
+        allShoes.splice(index, 1);
+    // }
+    // Find the corresponding parent element representing the cart item
+    let currentTotal = parseFloat(totalElem.innerHTML)
+    var cartItem = event.target.closest('.cartShoe');
+    totalElem.innerHTML = (currentTotal-parseFloat(cartItemNumberElement.innerHTML)*parseFloat(cartItemNumberElement.getAttribute('data-price'))).toFixed(2)
+    // Remove the cart item element
+    cartItem.remove();
+  }
+  // Check if the clicked element has the class "minus"
+  if (event.target.classList.contains('minus')) {
+    // Get the cartItemNumber element within the same cartShoe parent element
+    var cartItemNumberElement = event.target.parentElement.querySelector('.cartItemNumber');
+    
+    // Get the current number value
+    var currentNumber = parseInt(cartItemNumberElement.textContent);
+
+    // Decrement the number value and update the cartItemNumber element
+    if (currentNumber > 1) {
+       
+      cartItemNumberElement.textContent = (currentNumber - 1).toString();
+      
+      let currentTotal = parseFloat(totalElem.innerHTML)
+      totalElem.innerHTML = currentTotal-parseFloat(cartItemNumberElement.getAttribute('data-price'))
+      
+    }else{
+        let currentTotal = parseFloat(totalElem.innerHTML)
+        totalElem.innerHTML = (currentTotal-parseFloat(cartItemNumberElement.getAttribute('data-price'))).toFixed(2)
+        var cartItem = event.target.closest('.cartShoe');
+
+        // Remove the cart item element
+        cartItem.remove();
+    }
+    
+  }
+
+  // Check if the clicked element has the class "plus"
+  if (event.target.classList.contains('plus')) {
+    // Get the cartItemNumber element within the same cartShoe parent element
+    
+    var cartItemNumberElement = event.target.parentElement.querySelector('.cartItemNumber');
+    let currentTotal = parseFloat(totalElem.innerHTML)
+    totalElem.innerHTML = parseFloat(cartItemNumberElement.getAttribute('data-price'))+currentTotal 
+
+    // Get the current number value
+    var currentNumber = parseInt(cartItemNumberElement.textContent);
+
+    // Increment the number value and update the cartItemNumber element
+    cartItemNumberElement.textContent = (currentNumber + 1).toString();
+  }
+});
+
 
 // if(shoeFunction.getCartMessage() != ""){
     //     messageElem.innerHTML = shoeFunction.getCartMessage()

@@ -15,7 +15,7 @@
     <div class="orderCart">
       <div class="icon" >
       <i class="bi bi-cart3 openCart" ></i>
-      <span class="totalCart">0</span>
+      <span class="totalCart"></span>
       </div>
       <ul class="items" id="items">
         <i class="bi bi-x closeCart" ></i>
@@ -77,24 +77,24 @@
         <input type="button" value="search" class="search">
          
         </div>
-        <p class="message center">We have <span class="amount">13</span> <span class="shoeColor">White</span> <span class="brandDisplay">Nike</span> shoes in stock</p>
+        <p class="message center"></p>
         
         
     </div>
    </div> 
    <script type="text/x-template" class="userTemplate">
     {{#each list}}
-    <div class="cartShoe" >
+    <div class="cartShoe" data-object="{{jsonStringify this}}">
     <div class="cartPhotoDiv">
       <img class="cartPhoto" 
       src="{{this.photo}}" alt="" width="100%">
     </div>
     <div>
       <p class="">{{this.name}}</p>
-      <p>R<span>{{this.price}}</span> size <span>{{this.size}}</span></p>
-      <p class="addSubtract center"><span class="minus">-</span> <span class="cartItemNumber">1</span> <span class="plus">+</span></p>
+      <p>R<span  class="prices">{{this.price}}</span> size <span>{{this.size}}</span></p>
+      <p class="addSubtract center"><span class="minus">-</span> <span data-price="{{this.price}}" class="cartItemNumber {{this.name}}">1</span> <span class="plus">+</span></p>
     </div>
-    <i class="bi bi-trash3-fill" class="Bin"></i>
+    <i class="bi bi-trash3-fill" ></i>
     </div>
     {{/each}}
     

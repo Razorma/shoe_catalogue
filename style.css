@@ -4,15 +4,11 @@
     box-sizing: border-box;
     /* outline: 1px solid red; */
 }
-/* body{
-    position: relative;
-    z-index: 1;
-} */
+
 .main{
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* justify-content: center; */
     height: 100vh;
     background-image: url(Photos/background\ image.jpg);
     background-size: cover;
@@ -46,10 +42,8 @@
 .bi-check-circle-fill{
     width: 100%;
     font-size: 0px;
-    /* padding: 5px; */
 }
 .cartAdd{
-    /* font-size: 0px; */
     width: 100%;
 
 }
@@ -84,9 +78,7 @@ a{
 }
 .cartShoe{
     display: flex;
-    justify-content: space-between;
-    /* gap:9px; */
-    
+    justify-content: space-between;  
 }
 .number{
     width: 40px;
@@ -100,7 +92,6 @@ a{
 }
 
 .minus{
-    /* font-size: 25px; */
     font-weight: 1000;
 }
 .cartPhotoDiv{
@@ -120,7 +111,13 @@ a{
     font-size: larger;
     font-weight: 900;
 }
-
+#busket{
+    max-height: 75vh;
+    overflow: scroll;
+}
+#busket::-webkit-scrollbar{
+    display: none;
+  }
 .orderCart ul{
     background-color: gray;
     position: fixed;
@@ -128,13 +125,10 @@ a{
     right: -300px;
     /* right: 0px; */
     width: 200px;
-    /* height: 100vh; */
-    /* padding-top: 50px; */
     z-index: 2;
     transition: right 0.5s;
     list-style: none;
-    color: antiquewhite;
-    
+    color: antiquewhite;  
 }
 .addSubtract{
    display: flex;
@@ -157,7 +151,6 @@ a{
     align-items: center;
 }
 i{
-    /* font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; */
     font-style: normal;
     font-weight: 400;
 }
@@ -181,9 +174,7 @@ select{
     background-color: #fffb00;
 } 
 
-/* .price{
-    background-color: black;
-} */
+
 @media(min-width:960px){
     .product{
         max-width: 60%;   
@@ -193,13 +184,6 @@ select{
 @media(min-width:760px){
    
     .product{
-        /* margin-top: 30px;
-        width: 250px; 
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        background-color: rgba(255, 255, 255, 0.5);
-        backdrop-filter: blur(5px); */
         width: 75%;
         display: grid;
         place-items: center;
@@ -227,13 +211,8 @@ select{
         position: fixed;
         top: 20px;
         right: 20px;
-        /* z-index: 3; */
-        /* color: antiquewhite; */
     }
-    /* .orderCart ul{
-       padding-top: 50px;
-        
-    } */
+
     a{
        
         text-decoration: none;
@@ -267,7 +246,6 @@ select{
     } 
     .message{
         margin-top: 20px;
-        /* margin-left: 40px; */
     }
 }
 .info{

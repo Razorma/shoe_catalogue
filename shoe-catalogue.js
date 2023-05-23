@@ -1,14 +1,16 @@
 
 let allShoes = [];
 var otherArray = [];
-let cost = 0
+
 function shoeCatalogue(){
     let counter = 0;
     let theShoe = {};
     let stockQuantity = 0;
     let stockMessage = ''
     
+    
     function setTheShoe(shoes,color,brand,size){
+        allShoes = []
         theShoe = {};
         for(let i = 0;i<shoes.length;i++){       
             if(shoes[i].color===color && shoes[i].brand===brand && shoes[i].size===size){
@@ -33,8 +35,10 @@ function shoeCatalogue(){
     function getShoe(){  
         return theShoe  
     }
+    otherArray=[]
      function getAllShoe(){
-         allShoes.forEach(function(shoe) {
+        
+        allShoes.forEach(function(shoe) {
         var found = otherArray.some(function(otherShoe) {
             return (
               shoe.color === otherShoe.color &&
@@ -52,10 +56,12 @@ function shoeCatalogue(){
       //      counter++;
       //  }
     });
-        return otherArray
-    }
-    function getTotalCost(){
+    return otherArray;
         
+    }
+   
+    function getTotalCost(){
+        let cost = 0;
         otherArray.forEach(function(shoePrice) {
             cost+=shoePrice.price
       });
