@@ -648,19 +648,22 @@ Handlebars.registerHelper('jsonStringify', function(context) {
     return JSON.stringify(context);
   });
   
-container.addEventListener('click', function(event) {
+  
 
-    let priceElem = event.target.classList.contains('prices')
+container.addEventListener('click', function(event) {
     if (event.target.classList.contains('bi-trash3-fill')) {
     var cartItemNumberElement = event.target.parentElement.querySelector('.cartItemNumber');
     var cartShoeElement = event.target.closest('.cartShoe');
     var object = JSON.parse(cartShoeElement.getAttribute('data-object'));
     var objectToRemove = object;
 
-    var index = allShoes.indexOf(objectToRemove);
-    // if (index !== -1) {
-        allShoes.splice(index, 1);
-    // }
+    shoeFunction.deleteShoes(objectToRemove)
+    if(parseFloat(totalCart.innerHTML)>1){
+        totalCart.innerHTML=parseFloat(totalCart.innerHTML)-1
+    }else{
+        totalCart.innerHTML = "";
+    }
+
     let currentTotal = parseFloat(totalElem.innerHTML)
     var cartItem = event.target.closest('.cartShoe');
     totalElem.innerHTML = (currentTotal-parseFloat(cartItemNumberElement.innerHTML)*parseFloat(cartItemNumberElement.getAttribute('data-price'))).toFixed(2)
@@ -684,6 +687,15 @@ container.addEventListener('click', function(event) {
         totalElem.innerHTML = (currentTotal-parseFloat(cartItemNumberElement.getAttribute('data-price'))).toFixed(2)
         var cartItem = event.target.closest('.cartShoe');
         cartItem.remove();
+        var cartShoeElement = event.target.closest('.cartShoe');
+        var object = JSON.parse(cartShoeElement.getAttribute('data-object'));
+        var objectToRemove = object;
+        if(parseFloat(totalCart.innerHTML)>1){
+            totalCart.innerHTML=parseFloat(totalCart.innerHTML)-1
+        }else{
+            totalCart.innerHTML = "";
+        }
+        shoeFunction.deleteShoes(objectToRemove)
     }
     
   }

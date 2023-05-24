@@ -35,7 +35,6 @@ function shoeCatalogue(){
     function getShoe(){  
         return theShoe  
     }
-    otherArray=[]
      function getAllShoe(){
         
         allShoes.forEach(function(shoe) {
@@ -60,6 +59,36 @@ function shoeCatalogue(){
         
     }
    
+    function deleteShoes(objectToRemove){
+        var index = allShoes.findIndex(function(shoe) {
+            return (
+              shoe.name === objectToRemove.name &&
+              shoe.color === objectToRemove.color &&
+              shoe.brand === objectToRemove.brand &&
+              shoe.price === objectToRemove.price &&
+              shoe.size === objectToRemove.size &&
+              shoe.stock === objectToRemove.stock
+            );
+          });
+          
+          if (index !== -1) {
+            allShoes.splice(index, 1);
+          }
+          var indexTwo = otherArray.findIndex(function(shoe) {
+            return (
+              shoe.name === objectToRemove.name &&
+              shoe.color === objectToRemove.color &&
+              shoe.brand === objectToRemove.brand &&
+              shoe.price === objectToRemove.price &&
+              shoe.size === objectToRemove.size &&
+              shoe.stock === objectToRemove.stock
+            );
+          });
+          
+          if (indexTwo !== -1) {
+            otherArray.splice(indexTwo, 1);
+          }
+    }
     function getTotalCost(){
         let cost = 0;
         otherArray.forEach(function(shoePrice) {
@@ -82,6 +111,7 @@ function shoeCatalogue(){
         getAllShoe,
         theStockMessage,
         getTotalCost,
+        deleteShoes,
     }
 }
 
