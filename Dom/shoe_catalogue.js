@@ -21,6 +21,8 @@ const boughtEmote = document.querySelector(".bi-check-circle-fill")
 const buyButton = document.querySelector(".buyButton")
 const totalElem = document.querySelector(".totalElem")
 const totalCart = document.querySelector(".totalCart")
+const messageStock = document.querySelector(".messageStock")
+const checkoutButton = document.querySelector(".checkoutButton")
 
 
 openCartElem.addEventListener("click",function(){
@@ -586,10 +588,10 @@ search.addEventListener("click",function(){
     shoeFunction.setTheShoe(shoes,selectColor.value,selectBrand.value,parseInt(selectSize.value))
   
     if (JSON.stringify(shoeFunction.getShoe()) === JSON.stringify({})) {
-        messageElem.classList.add("info")
+        messageElem.classList.add("warning")
         messageElem.innerHTML = `We have no size ${selectSize.value} ${selectColor.value} ${selectBrand.value} left in storage`
         setTimeout(function () {
-            messageElem.classList.remove("info")
+            messageElem.classList.remove("warning")
             messageElem.innerHTML = '';
           }, 3500);
     }else{
@@ -597,7 +599,7 @@ search.addEventListener("click",function(){
     photo.src = shoeFunction.getShoe().photo
     money.innerHTML = shoeFunction.getShoe().price
 
-    messageElem.innerHTML = `we have  ${shoeFunction.getShoe().stock} ${shoeFunction.getShoe().color} ${shoeFunction.getShoe().brand} shoes left in storage`
+    messageElem.innerHTML = `We have  ${shoeFunction.getShoe().stock} ${shoeFunction.getShoe().color} ${shoeFunction.getShoe().brand} shoes left in storage`
     nameOfShoe.innerHTML  = shoeFunction.getShoe().name
     buyEmote.style.fontSize = "13px";
     boughtEmote.style.fontSize = "0px";
@@ -606,8 +608,27 @@ search.addEventListener("click",function(){
   
        
 })
+Handlebars.registerHelper('jsonStringify', function(context) {
+    return JSON.stringify(context);
+  });
+
+  otherArray = JSON.parse(localStorage.getItem("allTheShoes")) || [];
+const mylist = localStorage.getItem("allTheShoes");
+const allTheShoesArray = JSON.parse(mylist) || [];
+
+const data = { list: allTheShoesArray };
+var templateSource = document.querySelector(".userTemplate").innerHTML;
+var template = Handlebars.compile(templateSource);
+const theItems = template(data);
+
+const itemContainer = document.getElementById("busket");
+if (itemContainer) {
+  itemContainer.innerHTML = theItems;
+}
+
 
 addCart.addEventListener("click",function(){
+   
     if(JSON.stringify(shoeFunction.getShoe()) === JSON.stringify({})){
         messageElem.classList.add("warning")
         messageElem.innerHTML = `please enter color size and brand`
@@ -616,25 +637,24 @@ addCart.addEventListener("click",function(){
             messageElem.innerHTML = '';
           }, 3500);
     }
-
-
+    
     const data = { list: shoeFunction.getAllShoe() };
-
+    localStorage.setItem(
+        "allTheShoes",
+        JSON.stringify(otherArray)
+      );
+   
     var templateSource = document.querySelector(".userTemplate").innerHTML;
     var template = Handlebars.compile(templateSource);
     const theItems = template(data);
     const itemContainer = document.getElementById("busket");
     itemContainer.innerHTML = theItems;
-    // let cost = 0
-    // shoeFunction.getAllShoe().forEach(function(shoe) {
-    //     //cost.push(shoe.price);shoe.price
-    //     cost+=shoe.price
-    //     console.log(cost)
-    //   });
-    // console.log(shoeFunction.getAllShoe()[0].color)
     totalElem.innerHTML = shoeFunction.getTotalCost()
+    localStorage.setItem(
+        "totalone",
+        parseFloat(totalElem.innerHTML).toFixed(2)
+      );
     
-   
     if(shoeFunction.getAllShoe().length!=0){
         totalCart.innerHTML = 0|| shoeFunction.getAllShoe().length
         buyEmote.style.fontSize = "0px";
@@ -644,11 +664,9 @@ addCart.addEventListener("click",function(){
 
 })
 var container = document.getElementById('busket');
-Handlebars.registerHelper('jsonStringify', function(context) {
-    return JSON.stringify(context);
-  });
+
   
-  
+ 
 
 container.addEventListener('click', function(event) {
     if (event.target.classList.contains('bi-trash3-fill')) {
@@ -667,7 +685,7 @@ container.addEventListener('click', function(event) {
     let currentTotal = parseFloat(totalElem.innerHTML)
     var cartItem = event.target.closest('.cartShoe');
     totalElem.innerHTML = (currentTotal-parseFloat(cartItemNumberElement.innerHTML)*parseFloat(cartItemNumberElement.getAttribute('data-price'))).toFixed(2)
- 
+
     cartItem.remove();
   }
 
@@ -703,13 +721,37 @@ container.addEventListener('click', function(event) {
     
     var cartItemNumberElement = event.target.parentElement.querySelector('.cartItemNumber');
     let currentTotal = parseFloat(totalElem.innerHTML)
-    totalElem.innerHTML = parseFloat(cartItemNumberElement.getAttribute('data-price'))+currentTotal 
     var currentNumber = parseInt(cartItemNumberElement.textContent);
 
-    cartItemNumberElement.textContent = (currentNumber + 1).toString();
+    var cartShoeElement = event.target.closest('.cartShoe');
+    var object = JSON.parse(cartShoeElement.getAttribute('data-object'));
+    var objectToRemove = object;
+    if(currentNumber < objectToRemove.stock){
+        totalElem.innerHTML = parseFloat(cartItemNumberElement.getAttribute('data-price'))+currentTotal 
+        cartItemNumberElement.textContent = (currentNumber + 1).toString();
+    }else{
+        messageStock.innerHTML=`We have only ${objectToRemove.stock} ${objectToRemove.color} "${objectToRemove.name}" left in storage`
+        setTimeout(function () {
+            messageStock.innerHTML = '';
+          }, 3500);
+    }
+    
   }
+  return otherArray;
 });
+let initial = 0;
+  totalElem.innerHTML = localStorage.getItem("totalone")||initial.toFixed(2)
    
+
+  checkoutButton.addEventListener("click",function(){
+    
+    itemContainer.innerHTML = "";
+    localStorage.clear()
+    totalElem.innerHTML = initial.toFixed(2)
+    totalCart.innerHTML ="";
+     allShoes = [];
+     otherArray = [];
+  })
 });
 
 
@@ -735,75 +777,3 @@ container.addEventListener('click', function(event) {
 
 
 
-// {
-    //     name  : "Running shoes",
-    //     color : 'black and white',
-    //     brand : "Nike",
-    //     photo : "Photos/black and white running shoes.jpg",
-    //     price : 600,
-    //     size  : 5,
-    //     stock : 4
-    // },
-    // {
-    //     name  : "Running shoes",
-    //     color : 'black and white',
-    //     brand : "Nike",
-    //     photo : "Photos/black and white running shoes.jpg",
-    //     price : 600,
-    //     size  : 6,
-    //     stock : 3
-    // },
-    // {
-    //     name  : "Running shoes",
-    //     color : 'black and white',
-    //     brand : "Nike",
-    //     photo : "Photos/black and white running shoes.jpg",
-    //     price : 600,
-    //     size  : 7,
-    //     stock : 8
-    // },
-    // {
-    //     name  : "Running shoes",
-    //     color : 'black and white',
-    //     brand : "Nike",
-    //     photo : "Photos/black and white running shoes.jpg",
-    //     price : 600,
-    //     size  : 8,
-    //     stock : 4
-    // },
-// {
-    //     name  : "Air max 95",
-    //     color : 'White',
-    //     brand : "Nike",
-    //     photo : "Photos/white airmax.jpg",
-    //     price : 950,
-    //     size  : 5,
-    //     stock : 7
-    // },
-    // {
-    //     name  : "Air max 95",
-    //     color : 'White',
-    //     brand : "Nike",
-    //     photo : "Photos/white airmax.jpg",
-    //     price : 950,
-    //     size  : 6,
-    //     stock : 5
-    // },
-    // {
-    //     name  : "Air max 95",
-    //     color : 'White',
-    //     brand : "Nike",
-    //     photo : "Photos/white airmax.jpg",
-    //     price : 950,
-    //     size  : 7,
-    //     stock : 14
-    // },
-    // {
-    //     name  : "Air max 95",
-    //     color : 'White',
-    //     brand : "Nike",
-    //     photo : "Photos/white airmax.jpg",
-    //     price : 950,
-    //     size  : 8,
-    //     stock : 4
-    // },

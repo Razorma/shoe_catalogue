@@ -24,13 +24,13 @@ function shoeCatalogue(){
         }
     }
     
-    function setTheStockMessage(){
-        if(theShoe.stock<=0){
-           return  stockMessage = "out of stock"     
-        }else{
-            return stockMessage = ""
-        }
-    }
+    // function setTheStockMessage(NumberOfShoes,shoeStock){
+    //     if(NumberOfShoes>=shoeStock){
+    //        return  stockMessage = "out of stock"     
+    //     }else{
+    //         return stockMessage = ""
+    //     }
+    // }
     
     function getShoe(){  
         return theShoe  
@@ -107,7 +107,7 @@ function shoeCatalogue(){
         setTheShoe,
         getStock,
         getShoe,
-        setTheStockMessage,
+        // setTheStockMessage,
         getAllShoe,
         theStockMessage,
         getTotalCost,
