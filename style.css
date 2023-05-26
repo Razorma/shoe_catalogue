@@ -45,7 +45,6 @@
 }
 .cartAdd{
     width: 100%;
-
 }
 .warning{
     color: red;
@@ -118,6 +117,18 @@ a{
 #busket::-webkit-scrollbar{
     display: none;
   }
+  .settings{
+    background-color: gray;
+    position: fixed;
+    top: -450px;
+    left: 0;
+    /* right: 0px; */
+    width: 200px;
+    z-index: 2;
+    transition: top 0.5s;
+    list-style: none;
+    color: antiquewhite;  
+}
 .orderCart ul{
     background-color: gray;
     position: fixed;
@@ -250,4 +261,24 @@ select{
 }
 .info{
   color: darkgreen;
+}
+.bi-gear-fill{
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    font-size: larger;
+}
+.bi-x-octagon-fill{
+    position: relative;
+    bottom: 0px;
+    right: -180px;
+    font-size: larger;
+    color: black;
+    display: block;
+    margin-top: 10px;
+
+}
+.add{
+    padding: 8px 20px 8px 20px;
+    margin-left: 20px;
 }

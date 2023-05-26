@@ -23,13 +23,22 @@ const totalElem = document.querySelector(".totalElem")
 const totalCart = document.querySelector(".totalCart")
 const messageStock = document.querySelector(".messageStock")
 const checkoutButton = document.querySelector(".checkoutButton")
+const settings = document.querySelector(".settings")
+const gearButton = document.querySelector(".bi-gear-fill")
+const closeSettingsButton = document.querySelector(".bi-x-octagon-fill")
 
-
+let initial = 0;
 openCartElem.addEventListener("click",function(){
     orderCart.style.right = "0";
 })
 closeCart.addEventListener("click",function(){
     orderCart.style.right = "-300px";
+})
+gearButton.addEventListener("click",function(){
+    settings.style.top = "0";
+})
+closeSettingsButton.addEventListener("click",function(){
+    settings.style.top = "-450px";
 })
 
 
@@ -604,6 +613,7 @@ search.addEventListener("click",function(){
     buyEmote.style.fontSize = "13px";
     boughtEmote.style.fontSize = "0px";
     buyButton.style.backgroundColor = ""
+
 }
   
        
@@ -612,9 +622,9 @@ Handlebars.registerHelper('jsonStringify', function(context) {
     return JSON.stringify(context);
   });
 
-  otherArray = JSON.parse(localStorage.getItem("allTheShoes")) || [];
-const mylist = localStorage.getItem("allTheShoes");
-const allTheShoesArray = JSON.parse(mylist) || [];
+otherArray = JSON.parse(localStorage.getItem("allTheShoes")) || [];
+const mylist = otherArray;
+const allTheShoesArray = mylist || [];
 
 const data = { list: allTheShoesArray };
 var templateSource = document.querySelector(".userTemplate").innerHTML;
@@ -625,9 +635,10 @@ const itemContainer = document.getElementById("busket");
 if (itemContainer) {
   itemContainer.innerHTML = theItems;
 }
-
-
+totalElem.innerHTML = shoeFunction.getTotalCost()||0;
+  totalCart.innerHTML = shoeFunction.getAllShoe().length||"";
 addCart.addEventListener("click",function(){
+    
    
     if(JSON.stringify(shoeFunction.getShoe()) === JSON.stringify({})){
         messageElem.classList.add("warning")
@@ -637,7 +648,7 @@ addCart.addEventListener("click",function(){
             messageElem.innerHTML = '';
           }, 3500);
     }
-    
+   
     const data = { list: shoeFunction.getAllShoe() };
     localStorage.setItem(
         "allTheShoes",
@@ -650,10 +661,6 @@ addCart.addEventListener("click",function(){
     const itemContainer = document.getElementById("busket");
     itemContainer.innerHTML = theItems;
     totalElem.innerHTML = shoeFunction.getTotalCost()
-    localStorage.setItem(
-        "totalone",
-        parseFloat(totalElem.innerHTML).toFixed(2)
-      );
     
     if(shoeFunction.getAllShoe().length!=0){
         totalCart.innerHTML = 0|| shoeFunction.getAllShoe().length
@@ -661,12 +668,9 @@ addCart.addEventListener("click",function(){
         boughtEmote.style.fontSize = "15px";
         buyButton.style.backgroundColor = "blueviolet"
     }
-
+    
 })
 var container = document.getElementById('busket');
-
-  
- 
 
 container.addEventListener('click', function(event) {
     if (event.target.classList.contains('bi-trash3-fill')) {
@@ -678,6 +682,10 @@ container.addEventListener('click', function(event) {
     shoeFunction.deleteShoes(objectToRemove)
     if(parseFloat(totalCart.innerHTML)>1){
         totalCart.innerHTML=parseFloat(totalCart.innerHTML)-1
+        localStorage.setItem(
+        "totalCartLocal",
+        parseFloat(totalCart.innerHTML)
+      );
     }else{
         totalCart.innerHTML = "";
     }
@@ -685,7 +693,8 @@ container.addEventListener('click', function(event) {
     let currentTotal = parseFloat(totalElem.innerHTML)
     var cartItem = event.target.closest('.cartShoe');
     totalElem.innerHTML = (currentTotal-parseFloat(cartItemNumberElement.innerHTML)*parseFloat(cartItemNumberElement.getAttribute('data-price'))).toFixed(2)
-
+    shoeFunction.deleteShoes(objectToRemove)
+    localStorage.setItem("allTheShoes", JSON.stringify(otherArray));
     cartItem.remove();
   }
 
@@ -710,10 +719,16 @@ container.addEventListener('click', function(event) {
         var objectToRemove = object;
         if(parseFloat(totalCart.innerHTML)>1){
             totalCart.innerHTML=parseFloat(totalCart.innerHTML)-1
+              localStorage.setItem(
+              "totalCartLocal",
+              parseFloat(totalCart.innerHTML)
+           );
         }else{
             totalCart.innerHTML = "";
         }
         shoeFunction.deleteShoes(objectToRemove)
+        
+        localStorage.setItem("allTheShoes", JSON.stringify(otherArray));
     }
     
   }
@@ -737,14 +752,12 @@ container.addEventListener('click', function(event) {
     }
     
   }
-  return otherArray;
+  
 });
-let initial = 0;
-  totalElem.innerHTML = localStorage.getItem("totalone")||initial.toFixed(2)
-   
+
+  
 
   checkoutButton.addEventListener("click",function(){
-    
     itemContainer.innerHTML = "";
     localStorage.clear()
     totalElem.innerHTML = initial.toFixed(2)

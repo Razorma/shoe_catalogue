@@ -14,10 +14,10 @@ function shoeCatalogue(){
         theShoe = {};
         for(let i = 0;i<shoes.length;i++){       
             if(shoes[i].color===color && shoes[i].brand===brand && shoes[i].size===size){
+                    allShoes.push(shoes[i])
                     theShoe = shoes[i]
-                    // theShoe.stock--
                     shoes[i].stock = theShoe.stock 
-                    allShoes.push(theShoe)         
+                    allShoes.push(shoes[i])         
             }else{
                 stockMessage = `we have no ${shoes[i].color} ${shoes[i].brand} that are size ${shoes[i].size} left in storage`
             }   
@@ -31,12 +31,17 @@ function shoeCatalogue(){
     //         return stockMessage = ""
     //     }
     // }
+    function setShoeStock(){ 
+      theShoe.stock-- 
+  }
     
-    function getShoe(){  
+    
+    function getShoe(){ 
+
         return theShoe  
     }
      function getAllShoe(){
-        
+      
         allShoes.forEach(function(shoe) {
         var found = otherArray.some(function(otherShoe) {
             return (
@@ -112,6 +117,7 @@ function shoeCatalogue(){
         theStockMessage,
         getTotalCost,
         deleteShoes,
+        setShoeStock
     }
 }
 
