@@ -3,9 +3,7 @@ let allShoes = [];
 var otherArray = [];
 
 function shoeCatalogue(){
-    let counter = 0;
     let theShoe = {};
-    let stockQuantity = 0;
     let stockMessage = ''
     
     
@@ -16,21 +14,13 @@ function shoeCatalogue(){
             if(shoes[i].color===color && shoes[i].brand===brand && shoes[i].size===size){
                     allShoes.push(shoes[i])
                     theShoe = shoes[i]
-                    shoes[i].stock = theShoe.stock 
-                    allShoes.push(shoes[i])         
+                    shoes[i].stock = theShoe.stock         
             }else{
                 stockMessage = `we have no ${shoes[i].color} ${shoes[i].brand} that are size ${shoes[i].size} left in storage`
             }   
         }
     }
     
-    // function setTheStockMessage(NumberOfShoes,shoeStock){
-    //     if(NumberOfShoes>=shoeStock){
-    //        return  stockMessage = "out of stock"     
-    //     }else{
-    //         return stockMessage = ""
-    //     }
-    // }
     function setShoeStock(){ 
       theShoe.stock-- 
   }
@@ -56,9 +46,7 @@ function shoeCatalogue(){
   if (!found) {
     otherArray.push(shoe);
     
-     }//else {
-      //      counter++;
-      //  }
+     }
     });
     return otherArray;
         
@@ -112,7 +100,6 @@ function shoeCatalogue(){
         setTheShoe,
         getStock,
         getShoe,
-        // setTheStockMessage,
         getAllShoe,
         theStockMessage,
         getTotalCost,
@@ -120,6 +107,9 @@ function shoeCatalogue(){
         setShoeStock
     }
 }
+
+
+
 
 
 
