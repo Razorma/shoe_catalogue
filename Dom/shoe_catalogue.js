@@ -766,13 +766,17 @@ const priceofShoe = document.querySelector(".priceofShoe")
 const sizeofShoe = document.querySelector(".sizeofShoe")
 const stockofShoe = document.querySelector(".stockofShoe")
 const addShoeButton = document.querySelector(".addShoe")
+const addshoeErrorElem = document.querySelector(".addshoeErrorElem")
 
 addShoeButton.addEventListener("click",function(){
   shoeFunction.addTheShoe(myArrayOfShoes,nameofShoe.value, colorOfshoe.value, brandofShoe.value,photoofShoe.value,priceofShoe.value, sizeofShoe.value, stockofShoe.value)
   localStorage.setItem("theArrayOfShoes",JSON.stringify(myArrayOfShoes));
   shoes = JSON.parse(localStorage.getItem("theArrayOfShoes"))
-  console.log(shoes)
-  console.log(shoeFunction.getaddshoemessage())
+  addshoeErrorElem.innerHTML = shoeFunction.getaddshoemessage()
+  setTimeout(function () {
+    addshoeErrorElem.innerHTML = '';
+  }, 3000);
+ 
   nameofShoe.value="";
   colorOfshoe.value="";
   brandofShoe.value="";
@@ -787,7 +791,7 @@ addShoeButton.addEventListener("click",function(){
     itemContainer.innerHTML = "";
     localStorage.removeItem("totalCartLocal")
     localStorage.removeItem("allTheShoes")
-    localStorage.removeItem("theArrayOfShoes")
+    
   
     totalElem.innerHTML = initial.toFixed(2)
     totalCart.innerHTML ="";

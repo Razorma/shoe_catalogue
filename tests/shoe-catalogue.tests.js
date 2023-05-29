@@ -204,5 +204,62 @@ it('should get the total cost of all the shoes bought', function () {
   
 
 });
+it('should be able to add a shoe in the object of shoes', function () {
+  let display = shoeCatalogue();
+  display.addTheShoe(Shoes,"air jordans", "yellow", "Nike","Photos/Air force white nike.jpg","800", "5", "7")
+ 
+  assert.deepEqual(Shoes,[
+    {
+      name  : "Air Force",
+      color : 'White',
+      brand : "Nike",
+      photo : "Photos/air force white nike.jpg",
+      price : 750,
+      size  : 5,
+      stock : 6
+    },
+    {
+      name  : "Air Force",
+      color : 'orange',
+      brand : "Nike",
+      photo : "Photos/air force white nike.jpg",
+      price : 750,
+      size  : 5,
+      stock : 5
+    },
+    {
+      name  : "low",
+      color : 'White',
+      brand : "adidas",
+      photo : "Photos/air force white nike.jpg",
+      price : 750,
+      size  : 5,
+      stock : 3
+    },
+    {
+      name  : "air jordans",
+      color : 'yellow',
+      brand : "Nike",
+      photo : "Photos/Air force white nike.jpg",
+      price : 800,
+      size  : 5,
+      stock : 7
+    },
+  ]);
+  
 
-  });
+});
+
+it('should return the error message as an empty string if the the fields are entered', function () {
+  let display = shoeCatalogue();
+  display.addTheShoe(Shoes,"air jordans", "yellow", "Nike","Photos/Air force white nike.jpg","800", "5", "7")
+ 
+  assert.deepEqual(display.getaddshoemessage(),"");
+});
+
+it('should return an erro message if any of the entered values in an empty string', function () {
+  let display = shoeCatalogue();
+  display.addTheShoe(Shoes,"", "", "","","", "", "")
+  assert.deepEqual(display.getaddshoemessage(),"please enter all the inputs");
+});
+});
