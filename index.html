@@ -15,14 +15,16 @@
     <i class="bi bi-gear-fill"></i>
     <div class="settings">
       
-      <label for="nameofShoe" class="center">Name<input id="nameofShoe"type="text"></label>
-      <label for="colorOfshoe" class="center">Color<input id="colorOfshoe"type="text"></label>
-      <label for="brandofShoe" class="center">Brand<input id="brandofShoe"type="text"></label>
-      <label for="photoofShoe" class="center">Photo (URL)<input id="photoofShoe"type="text"></label>
-      <label for="priceofShoe" class="center">Price<input id="priceofShoe"type="number"></label>
-      <label for="sizeofShoe" class="center">Size<input id="sizeofShoe"type="number"></label>
-      <label for="stockofShoe" class="center">Stock<input id="stockofShoe"type="number"></label>
-      <div class="add"><button class="add">Add</button></div>
+      <label for="nameofShoe" >Name<input class="nameofShoe"id="nameofShoe"type="text"></label>
+      <label for="colorOfshoe" >Color<input class="colorOfshoe"id="colorOfshoe"type="text"></label>
+      <label for="brandofShoe" >Brand<input class="brandofShoe"id="brandofShoe"type="text"></label>
+      <label for="photoofShoe" >Photo (URL)<input class="photoofShoe"id="photoofShoe"type="text"></label>
+      <label for="priceofShoe" >Price<input class="priceofShoe"id="priceofShoe"type="number"></label>
+      <label for="sizeofShoe" >Size<input class="sizeofShoe"id="sizeofShoe"type="number"></label>
+      <label for="stockofShoe" >Stock<input class="stockofShoe"id="stockofShoe"type="number"></label>
+      
+   
+      <div class="add"><button class="addShoe">Add</button></div>
       <i class="bi bi-x-octagon-fill"></i>
     </div>
     <div class="orderCart">
@@ -34,10 +36,6 @@
         <i class="bi bi-x closeCart" ></i>
         <p class="messageStock center warning"></p>
         <div class="listDiv">
-        <!-- <li ><a href="">item 1</a></li>
-        <li ><a href="">item 2</a></li>
-        <li ><a href="">item 3</a></li>
-        <li ><a href="">item 4</a></li> -->
         <div id="busket">
           
         </div>
@@ -47,7 +45,7 @@
       </ul>
     </div>
     <div class="product">
-        <div class="photo"><img class="photos" src="Photos/white nike placeholder.jpg" alt="" width="250px" height="250px">
+        <div class="photo"><img class="photos" src="Photos/white nike placeholder.jpg" href="" alt="" width="250px" height="250px">
             <div class="price">
                 <p class="center name">Name</p>
                 <p class="purchase"><span>R<span class="money">0.00</span></span><span class="cart" ><button class="buyButton"><i class="bi bi-cart3 cartAdd" >Buy</i><i class="bi bi-check-circle-fill"></i></button></span></p>
@@ -59,10 +57,10 @@
           <select id="color" name="color" class="selectColor" >
             <option value="" data-name="colors">Select Color</option>
             <option value="black" data-name="Black">Black</option>
-            <option value="White" data-name="White">White</option>
+            <option value="white" data-name="White">White</option>
             <option value="blue" data-name="blue">blue</option>
-            <option value="Red" data-name="Red">Red</option>
-            <option value="Yellow" data-name="Red">Yellow</option>
+            <option value="red" data-name="red">Red</option>
+            <option value="yellow" data-name="Red">Yellow</option>
             <option value="black-and-white" data-name="black and White">black and White</option>
           </select>
         </label>

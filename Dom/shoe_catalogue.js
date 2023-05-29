@@ -26,6 +26,7 @@ const checkoutButton = document.querySelector(".checkoutButton")
 const settings = document.querySelector(".settings")
 const gearButton = document.querySelector(".bi-gear-fill")
 const closeSettingsButton = document.querySelector(".bi-x-octagon-fill")
+const Upload = document.querySelector(".Upload")
 
 let initial = 0;
 openCartElem.addEventListener("click",function(){
@@ -44,10 +45,10 @@ closeSettingsButton.addEventListener("click",function(){
 
 let shoeFunction = shoeCatalogue()
 
-var shoes = [
+let myArrayOfShoes = [
     {
       name  : "Air Force 1",
-      color : 'White',
+      color : 'white',
       brand : "Nike",
       photo : "Photos/air force white nike.jpg",
       price : 750,
@@ -56,7 +57,7 @@ var shoes = [
     },
     {
         name  : "Air Force 1",
-        color : 'White',
+        color : 'white',
         brand : "Nike",
         photo : "Photos/air force white nike.jpg",
         price : 750,
@@ -65,7 +66,7 @@ var shoes = [
     },
     {
         name  : "Air Force 1",
-        color : 'White',
+        color : 'white',
         brand : "Nike",
         photo : "Photos/air force white nike.jpg",
         price : 750,
@@ -74,7 +75,7 @@ var shoes = [
     },
     {
         name  : "Air Force 1",
-        color : 'White',
+        color : 'white',
         brand : "Nike",
         photo : "Photos/air force white nike.jpg",
         price : 750,
@@ -372,7 +373,7 @@ var shoes = [
     },
     {
         name  : "Advantage",
-        color : 'White',
+        color : 'white',
         brand : "adidas",
         photo : "Photos/white addidas.jpg",
         price : 650,
@@ -381,7 +382,7 @@ var shoes = [
     },
     {
         name  : "Advantage",
-        color : 'White',
+        color : 'white',
         brand : "adidas",
         photo : "Photos/white addidas.jpg",
         price : 650,
@@ -390,7 +391,7 @@ var shoes = [
     },
     {
         name  : "Advantage",
-        color : 'White',
+        color : 'white',
         brand : "adidas",
         photo : "Photos/white addidas.jpg",
         price : 650,
@@ -399,7 +400,7 @@ var shoes = [
     },
     {
         name  : "Advantage",
-        color : 'White',
+        color : 'white',
         brand : "adidas",
         photo : "Photos/white addidas.jpg",
         price : 650,
@@ -409,7 +410,7 @@ var shoes = [
     
     {
         name  : "Fila Disruptor",
-        color : 'White',
+        color : 'white',
         brand : "Fila",
         photo : "Photos/white fila shoes.jpg",
         price : 950,
@@ -418,7 +419,7 @@ var shoes = [
     },
     {
         name  : "Fila Disruptor",
-        color : 'White',
+        color : 'white',
         brand : "Fila",
         photo : "Photos/white fila shoes.jpg",
         price : 950,
@@ -427,7 +428,7 @@ var shoes = [
     },
     {
         name  : "Fila Disruptor",
-        color : 'White',
+        color : 'white',
         brand : "Fila",
         photo : "Photos/white fila shoes.jpg",
         price : 950,
@@ -436,7 +437,7 @@ var shoes = [
     },
     {
         name  : "Fila Disruptor",
-        color : 'White',
+        color : 'white',
         brand : "Fila",
         photo : "Photos/white fila shoes.jpg",
         price : 950,
@@ -445,7 +446,7 @@ var shoes = [
     },
     {
         name  : "All star",
-        color : 'White',
+        color : 'white',
         brand : "All-Star",
         photo : "Photos/white high top all star.jpg",
         price : 350,
@@ -454,7 +455,7 @@ var shoes = [
     },
     {
         name  : "All star",
-        color : 'White',
+        color : 'white',
         brand : "All-Star",
         photo : "Photos/white high top all star.jpg",
         price : 350,
@@ -463,7 +464,7 @@ var shoes = [
     },
     {
         name  : "All star",
-        color : 'White',
+        color : 'white',
         brand : "All-Star",
         photo : "Photos/white high top all star.jpg",
         price : 350,
@@ -472,7 +473,7 @@ var shoes = [
     },
     {
         name  : "All star",
-        color : 'White',
+        color : 'white',
         brand : "All-Star",
         photo : "Photos/white high top all star.jpg",
         price : 350,
@@ -481,7 +482,7 @@ var shoes = [
     },
     {
         name  : "white Puma",
-        color : 'White',
+        color : 'white',
         brand : "Puma",
         photo : "Photos/white puma.jpg",
         price : 750,
@@ -489,8 +490,8 @@ var shoes = [
         stock : 7
     },
     {
-        name  : "white Puma",
-        color : 'White',
+        name  : "White Puma",
+        color : 'white',
         brand : "Puma",
         photo : "Photos/white puma.jpg",
         price : 750,
@@ -498,8 +499,8 @@ var shoes = [
         stock : 8
     },
     {
-        name  : "white Puma",
-        color : 'White',
+        name  : "White Puma",
+        color : 'white',
         brand : "Puma",
         photo : "Photos/white puma.jpg",
         price : 750,
@@ -507,8 +508,8 @@ var shoes = [
         stock : 6
     },
     {
-        name  : "white Puma",
-        color : 'White',
+        name  : "White Puma",
+        color : 'white',
         brand : "Puma",
         photo : "Photos/white puma.jpg",
         price : 750,
@@ -518,7 +519,7 @@ var shoes = [
    
     {
         name  : "Air Jordan 1",
-        color : 'Yellow',
+        color : 'yellow',
         brand : "Nike",
         photo : "Photos/Yellow and white air jordans.jpg",
         price : 950,
@@ -527,7 +528,7 @@ var shoes = [
     },
     {
         name  : "Air Jordan 1",
-        color : 'Yellow',
+        color : 'yellow',
         brand : "Nike",
         photo : "Photos/Yellow and white air jordans.jpg",
         price : 950,
@@ -536,7 +537,7 @@ var shoes = [
     },
     {
         name  : "Air Jordan 1",
-        color : 'Yellow',
+        color : 'yellow',
         brand : "Nike",
         photo : "Photos/Yellow and white air jordans.jpg",
         price : 950,
@@ -545,7 +546,7 @@ var shoes = [
     },
     {
         name  : "Air Jordan 1",
-        color : 'Yellow',
+        color : 'yellow',
         brand : "Nike",
         photo : "Photos/Yellow and white air jordans.jpg",
         price : 950,
@@ -554,7 +555,7 @@ var shoes = [
     },
     {
         name  : "Yellow Vans",
-        color : 'Yellow',
+        color : 'yellow',
         brand : "Vans",
         photo : "Photos/yellow vans.jpg",
         price : 850,
@@ -563,7 +564,7 @@ var shoes = [
     },
     {
         name  : "Yellow Vans",
-        color : 'Yellow',
+        color : 'yellow',
         brand : "Vans",
         photo : "Photos/yellow vans.jpg",
         price : 850,
@@ -572,7 +573,7 @@ var shoes = [
     },
     {
         name  : "Yellow Vans",
-        color : 'Yellow',
+        color : 'yellow',
         brand : "Vans",
         photo : "Photos/yellow vans.jpg",
         price : 850,
@@ -581,7 +582,7 @@ var shoes = [
     },
     {
         name  : "Yellow Vans",
-        color : 'Yellow',
+        color : 'yellow',
         brand : "Vans",
         photo : "Photos/yellow vans.jpg",
         price : 850,
@@ -590,6 +591,8 @@ var shoes = [
     },
 
   ];
+localStorage.setItem("theArrayOfShoes",JSON.stringify(myArrayOfShoes));
+var shoes = JSON.parse(localStorage.getItem("theArrayOfShoes"))
 
 
   
@@ -604,7 +607,7 @@ search.addEventListener("click",function(){
             messageElem.innerHTML = '';
           }, 3500);
     }else{
-    
+   
     photo.src = shoeFunction.getShoe().photo
     money.innerHTML = shoeFunction.getShoe().price
 
@@ -755,17 +758,46 @@ container.addEventListener('click', function(event) {
   
 });
 
-  
+const nameofShoe = document.querySelector(".nameofShoe")
+const colorOfshoe = document.querySelector(".colorOfshoe")
+const brandofShoe = document.querySelector(".brandofShoe")
+const photoofShoe = document.querySelector(".photoofShoe")
+const priceofShoe = document.querySelector(".priceofShoe")
+const sizeofShoe = document.querySelector(".sizeofShoe")
+const stockofShoe = document.querySelector(".stockofShoe")
+const addShoeButton = document.querySelector(".addShoe")
+
+addShoeButton.addEventListener("click",function(){
+  shoeFunction.addTheShoe(myArrayOfShoes,nameofShoe.value, colorOfshoe.value, brandofShoe.value,photoofShoe.value,priceofShoe.value, sizeofShoe.value, stockofShoe.value)
+  localStorage.setItem("theArrayOfShoes",JSON.stringify(myArrayOfShoes));
+  shoes = JSON.parse(localStorage.getItem("theArrayOfShoes"))
+  console.log(shoes)
+  console.log(shoeFunction.getaddshoemessage())
+  nameofShoe.value="";
+  colorOfshoe.value="";
+  brandofShoe.value="";
+  photoofShoe.value="";
+  priceofShoe.value="";
+  sizeofShoe.value="";
+  stockofShoe.value="";
+  addShoeButton.value="";
+})
 
   checkoutButton.addEventListener("click",function(){
     itemContainer.innerHTML = "";
-    localStorage.clear()
+    localStorage.removeItem("totalCartLocal")
+    localStorage.removeItem("allTheShoes")
+    localStorage.removeItem("theArrayOfShoes")
+  
     totalElem.innerHTML = initial.toFixed(2)
     totalCart.innerHTML ="";
      allShoes = [];
      otherArray = [];
   })
+
+
 });
+
 
 
 

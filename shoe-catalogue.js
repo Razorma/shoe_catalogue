@@ -1,10 +1,12 @@
 
 let allShoes = [];
 var otherArray = [];
+// let arrayofObjects =[]
 
 function shoeCatalogue(){
     let theShoe = {};
     let stockMessage = ''
+    let addshoeMessage=''
     
     
     function setTheShoe(shoes,color,brand,size){
@@ -21,9 +23,29 @@ function shoeCatalogue(){
         }
     }
     
+    function addTheShoe(arrayofObjects,nameshoe, color, brand,photo,price, size, stock) {
+      if(nameshoe ===""|| color===""|| brand===""||photo===""||price===""|| size===""|| stock===""){
+        addshoeMessage = "please enter all the inputs"
+      }else{
+      let newShoe = {
+        name  : nameshoe,
+        color : (color.toLowerCase()),
+        brand : brand,
+        photo : photo,
+        price : parseFloat(price),
+        size  : parseFloat(size),
+        stock : parseFloat(stock)
+      };
+    
+      arrayofObjects.push(newShoe);
+     }
+    }
+   function getaddshoemessage(){
+    return addshoeMessage
+   }
     function setShoeStock(){ 
       theShoe.stock-- 
-  }
+    }
     
     
     function getShoe(){ 
@@ -104,7 +126,9 @@ function shoeCatalogue(){
         theStockMessage,
         getTotalCost,
         deleteShoes,
-        setShoeStock
+        setShoeStock,
+        addTheShoe,
+        getaddshoemessage
     }
 }
 
