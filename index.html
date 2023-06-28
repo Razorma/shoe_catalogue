@@ -1,100 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
-  </head>
 
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BJ Kicks</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+</head>
 <body>
-   <div class="main">
+  <div class="shoeLogo"><img src="Photos/BJ online closet.png" alt="" width="25px" class="logoShoe"> </div>
+  
+  <div class="navigation">
+    
+    <select id="colorNav" name="color" class="selectColorNav">
+      <option value="" data-name="colors">Select Color</option>
+      <option value="black" data-name="Black">Black</option>
+      <option value="white" data-name="White">White</option>
+      <option value="blue" data-name="blue">blue</option>
+      <option value="red" data-name="red">Red</option>
+      <option value="yellow" data-name="Red">Yellow</option>
+      <option value="black-and-white" data-name="black and White">black and White</option>
+    </select>
+    <select id="brandNav" name="brand" class="selectBrandNav">
+      <option value="" data-name="brands">Select Brand</option>
+      <option value="Nike" data-name="Nike">Nike</option>
+      <option value="adidas" data-name="adidas">adidas</option>
+      <option value="Puma" data-name="Puma">Puma</option>
+      <option value="Vans" data-name="Vans">Vans</option>
+      <option value="All-Star" data-name="All-Star">All Star</option>
+      <option value="Fila" data-name="Fila">Fila</option>
+    </select>
+    <select id="sizeNav" name="size" class="selectSizeNav">
+      <option value="" data-name="sizes">Select Size</option>
+      <option value="5" data-name="five">5</option>
+      <option value="6" data-name="six">6</option>
+      <option value="7" data-name="seven">7</option>
+      <option value="8" data-name="eight">8</option>
+    </select>
+    <input type="button" value="search" class="searchNav">
+    <input type="button" value="Back" class="backNav">
+  </div>
+  <div>
+    <h1 class="messageOfShoe center"></h1>
+  </div>
+  <div class="main">
     <i class="bi bi-gear-fill"></i>
     <div class="settings">
       <p class="addshoeErrorElem center warning"></p>
-      <label for="nameofShoe" >Name<input class="nameofShoe"id="nameofShoe"type="text"></label>
-      <label for="colorOfshoe" >Color<input class="colorOfshoe"id="colorOfshoe"type="text"></label>
-      <label for="brandofShoe" >Brand<input class="brandofShoe"id="brandofShoe"type="text"></label>
-      <label for="photoofShoe" >Photo (URL)<input class="photoofShoe"id="photoofShoe"type="text"></label>
-      <label for="priceofShoe" >Price<input class="priceofShoe"id="priceofShoe"type="number"></label>
-      <label for="sizeofShoe" >Size<input class="sizeofShoe"id="sizeofShoe"type="number"></label>
-      <label for="stockofShoe" >Stock<input class="stockofShoe"id="stockofShoe"type="number"></label>
-      
-   
+      <label for="nameofShoe">Name<input class="nameofShoe" id="nameofShoe" type="text"></label>
+      <label for="colorOfshoe">Color<input class="colorOfshoe" id="colorOfshoe" type="text"></label>
+      <label for="brandofShoe">Brand<input class="brandofShoe" id="brandofShoe" type="text"></label>
+      <label for="photoofShoe">Photo (URL)<input class="photoofShoe" id="photoofShoe" type="text"></label>
+      <label for="priceofShoe">Price<input class="priceofShoe" id="priceofShoe" type="number"></label>
+      <label for="sizeofShoe">Size<input class="sizeofShoe" id="sizeofShoe" type="number"></label>
+      <label for="stockofShoe">Stock<input class="stockofShoe" id="stockofShoe" type="number"></label>
+
+
       <div class="add"><button class="addShoe">Add</button></div>
       <i class="bi bi-x-octagon-fill"></i>
     </div>
+    <div class="icon">
+        <i class="bi bi-cart3 openCart"></i>
+        <span class="totalCart"></span>
+    </div>
     <div class="orderCart">
-      <div class="icon" >
-      <i class="bi bi-cart3 openCart" ></i>
-      <span class="totalCart"></span>
-      </div>
+      
       <ul class="items" id="items">
-        <i class="bi bi-x closeCart" ></i>
+        <i class="bi bi-x closeCart"></i>
         <p class="messageStock center warning"></p>
         <div class="listDiv">
-        <div id="busket">
-          
-        </div>
-        <div class="Total">Total R<span class="totalElem">0.00</span></div>
-        <div class="checkout"><button class="checkoutButton">checkout</button></div>
-        
+          <div id="busket">
+
+          </div>
+          <div class="Total">Total R<span class="totalElem">0.00</span></div>
+          <div class="checkout"><button class="checkoutButton">checkout</button></div>
+
       </ul>
     </div>
-    <div class="product">
-        <div class="photo"><img class="photos" src="Photos/white nike placeholder.jpg" href="" alt="" width="250px" height="250px">
-            <div class="price">
-                <p class="center name">Name</p>
-                <p class="purchase"><span>R<span class="money">0.00</span></span><span class="cart" ><button class="buyButton"><i class="bi bi-cart3 cartAdd" >Buy</i><i class="bi bi-check-circle-fill"></i></button></span></p>
-            </div>
-        </div>
-        <div class="selectors">
-        <label  for="color" class="colorSelect"
-          ><p>Color:</p>
-          <select id="color" name="color" class="selectColor" >
-            <option value="" data-name="colors">Select Color</option>
-            <option value="black" data-name="Black">Black</option>
-            <option value="white" data-name="White">White</option>
-            <option value="blue" data-name="blue">blue</option>
-            <option value="red" data-name="red">Red</option>
-            <option value="yellow" data-name="Red">Yellow</option>
-            <option value="black-and-white" data-name="black and White">black and White</option>
-          </select>
-        </label>
-        <label for="brand" class="brandSelect"
-          ><p>Brand:</p>
-          <select id="brand" name="brand" class="selectBrand">
-            <option value="" data-name="brands">Select Brand</option>
-            <option value="Nike" data-name="Nike">Nike</option>
-            <option value="adidas" data-name="adidas">adidas</option>
-            <option value="Puma" data-name="Puma">Puma</option>
-            <option value="Vans" data-name="Vans">Vans</option>
-            <option value="All-Star" data-name="All-Star">All Star</option>
-            <option value="Fila" data-name="Fila">Fila</option>
-          </select>
-        </label>
-        <label for="size" class="sizeSelect"
-          ><p>Size:</p>
-          <select id="size" name="size" class="selectSize">
-            <option value="" data-name="sizes">Select Size</option>
-            <option value="5" data-name="five">5</option>
-            <option value="6" data-name="six">6</option>
-            <option value="7" data-name="seven">7</option>
-            <option value="8" data-name="eight">8</option>
-          </select>
-        </label>
-        <input type="button" value="search" class="search">
-         
-        </div>
-        <p class="message center"></p>
-        
-        
+
+    <div id="product">
+
     </div>
-   </div> 
-   <script type="text/x-template" class="userTemplate">
+  </div>
+  <script type="text/x-template" class="userTemplate">
+
+    {{#each list}}
+    <div class="photo" data-object="{{jsonStringify this}}"><img class="photos" src="{{this.photo}}" href="" alt="" width="250px" height="250px">
+        <div class="price">
+            <p class="center name">{{this.name}}</p>
+            <p class="purchase"><span>R<span class="money">{{this.price}}</span></span><span class="Stock">Stock:{{this.stock}}</span><span class="cart" ><button class="buyButton"><i class="bi bi-cart3 cartAdd" >Buy</i><i class="bi bi-check-circle-fill"></i></button></span></p>
+        </div>
+    </div>
+    {{/each}}
+    
+   </script>
+  <script type="text/x-template" class="myTemplate">
     {{#each list}}
     <div class="cartShoe" data-object="{{jsonStringify this}}">
     <div class="cartPhotoDiv">
@@ -102,17 +105,17 @@
       src="{{this.photo}}" alt="" width="100%">
     </div>
     <div>
-      <p class="">{{this.name}}</p>
+      <p class="">{{this.name}} {{this.stock}}</p>
       <p>R<span  class="prices">{{this.price}}</span> size <span>{{this.size}}</span></p>
-      <p class="addSubtract center"><span class="minus">-</span> <span data-price="{{this.price}}" class="cartItemNumber {{this.name}}">1</span> <span class="plus">+</span></p>
+      <p class="addSubtract center"><span class="minus">-</span> <span data-object="{{jsonStringify this}}" data-price="{{this.price}}" class="cartItemNumber {{this.name}}">{{this.qty}}</span> <span class="plus">+</span></p>
     </div>
     <i class="bi bi-trash3-fill" ></i>
     </div>
     {{/each}}
     
    </script>
-   <!-- <div>{{this}}</div> -->
 </body>
 <script src="shoe-catalogue.js" charset="utf-8"></script>
 <script src="Dom/shoe_catalogue.js" charset="utf-8"></script>
+
 </html>
