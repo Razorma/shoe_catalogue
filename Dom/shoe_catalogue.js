@@ -19,6 +19,37 @@ document.addEventListener('DOMContentLoaded', function () {
     const product = document.querySelector("#product")
     const backNav = document.querySelector(".backNav")
     const element = document.querySelector(".messageOfShoe");
+    const nameofShoe = document.querySelector(".nameofShoe")
+    const colorOfshoe = document.querySelector(".colorOfshoe")
+    const brandofShoe = document.querySelector(".brandofShoe")
+    const photoofShoe = document.querySelector(".photoofShoe")
+    const priceofShoe = document.querySelector(".priceofShoe")
+    const sizeofShoe = document.querySelector(".sizeofShoe")
+    const stockofShoe = document.querySelector(".stockofShoe")
+    const addShoeButton = document.querySelector(".addShoe")
+    const addshoeErrorElem = document.querySelector(".addshoeErrorElem")
+
+
+    colorOfshoe.addEventListener('keydown', function (press) {
+        const letterRegex = /^[a-zA-Z ]*$/;
+        if (!letterRegex.test(press.key)) {
+            addshoeErrorElem.innerHTML = "enter only letters";
+            setTimeout(function () {
+                addshoeErrorElem.innerHTML = '';
+            }, 2500)
+            press.preventDefault();
+        }
+    });
+    brandofShoe.addEventListener('keydown', function (press) {
+        const letterRegex = /^[a-zA-Z ]*$/;
+        if (!letterRegex.test(press.key)) {
+            addshoeErrorElem.innerHTML = "enter only letters";
+            setTimeout(function () {
+                addshoeErrorElem.innerHTML = '';
+            }, 2500)
+            press.preventDefault();
+        }
+    });
 
 
     Handlebars.registerHelper('jsonStringify', function (context) {
@@ -59,18 +90,18 @@ document.addEventListener('DOMContentLoaded', function () {
             ogPrice: 750,
             ogStock: 6
         },
-        {
-            name: "Air Jordan 13",
-            color: 'black',
-            brand: "Nike",
-            photo: "Photos/air jordan 13 swed black.jpg",
-            price: 650,
-            size: 5,
-            stock: 9,
-            qty: 0,
-            ogPrice: 650,
-            ogStock: 9
-        },
+        // {
+        //     name: "Air Jordan 13",
+        //     color: 'black',
+        //     brand: "Nike",
+        //     photo: "Photos/air jordan 13 swed black.jpg",
+        //     price: 650,
+        //     size: 5,
+        //     stock: 9,
+        //     qty: 0,
+        //     ogPrice: 650,
+        //     ogStock: 9
+        // },
         {
             name: "Air Max 90",
             color: 'white',
@@ -374,7 +405,20 @@ document.addEventListener('DOMContentLoaded', function () {
     ];
 
     var displayShoes = JSON.parse(localStorage.getItem("theArrayOfShoes"))
+    let searchCheck = ''
+    var searchColor = '';
+    var searchBrand = '';
+    var searchSize = 0;
 
+    function searchShoesByCriteria(color, brand, size) {
+        return displayShoes.filter(function(shoe) {
+          return (
+            shoe.color === color &&
+            shoe.brand === brand &&
+            shoe.size === size
+          );
+        });
+      }
 
     localStorage.setItem("theArrayOfShoes", JSON.stringify(myArrayOfShoes));
     searchNav.addEventListener("click", function () {
@@ -430,10 +474,15 @@ document.addEventListener('DOMContentLoaded', function () {
                         element.innerHTML = ""
                     }, 6000);
             } else {
-                const mylist = otherArray;
-                const allTheShoesArray = mylist || [];
+
+                 searchColor = selectColor.value;
+                 searchBrand = selectBrand.value;
+                 searchSize = parseInt(selectSize.value);
+
+                let filteredShoes = searchShoesByCriteria(searchColor, searchBrand, searchSize);
+
     
-                const data = { list: shoeFunction.allSearchedShoes };
+                const data = { list: filteredShoes };
                 var templateSource = document.querySelector(".userTemplate").innerHTML;
                 var template = Handlebars.compile(templateSource);
                 const theItems = template(data);
@@ -447,19 +496,20 @@ document.addEventListener('DOMContentLoaded', function () {
             selectColor.value =""
             selectBrand.value=""
             selectSize.value =""
+            searchCheck = 'filtered'
     
             }
         }
     })
     backNav.addEventListener("click", function () {
         backNav.style.display = "none"
+        searchCheck = ""
     })
 
 
     otherArray = JSON.parse(localStorage.getItem("allTheShoes")) || [];
-    const mylist = otherArray;
-    const allTheShoesArray = mylist || [];
-    function creattelento(display) {
+
+    function createDisplayHtml(display) {
         const data = { list: display };
         var templateSource = document.querySelector(".userTemplate").innerHTML;
         var template = Handlebars.compile(templateSource);
@@ -483,8 +533,8 @@ document.addEventListener('DOMContentLoaded', function () {
     totalCart.innerHTML = shoeFunction.getAllShoe().length || "";
 
     function createCart(otherArrayCart) {
-        const bhekalist = otherArrayCart;
-        const all = bhekalist || [];
+        const bucketList = otherArrayCart;
+        const all = bucketList || [];
 
         const datalist = { list: all };
         var templateSource = document.querySelector(".myTemplate").innerHTML;
@@ -497,8 +547,8 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
     otherArray = JSON.parse(localStorage.getItem("allTheShoes")) || [];
-    const bhekalist = otherArray;
-    const all = bhekalist || [];
+    const bucketList = otherArray;
+    const all = bucketList || [];
 
     const datalist = { list: all };
     var templateSource = document.querySelector(".myTemplate").innerHTML;
@@ -638,7 +688,7 @@ document.addEventListener('DOMContentLoaded', function () {
             
         }
     }
-    function beMe(object, indexArray) {
+    function initialiseOutOfStockShoes(object, indexArray) {
         const index = indexArray.findIndex(obj => obj.name === object.name && obj.color === object.color && obj.brand === object.brand && obj.size === object.size);
         if (index !== -1) {
             indexArray[index].stock = 0;
@@ -662,9 +712,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 DecreaseStock(objectToAdd, shoeFunction.getAllShoe(), objectToAdd.stock, objectToAdd.qty, objectToAdd.ogPrice)
             }
             else {
-                beMe(objectToAdd, displayShoes)
-                const element = document.querySelector(".messageOfShoe");
-                element.innerHTML = `${objectToAdd.brand}${objectToAdd.name} are out of Stock`
+                initialiseOutOfStockShoes(objectToAdd, displayShoes)
+                element.innerHTML = `${objectToAdd.brand}${objectToAdd.name} shoes are out of Stock`
                 function fadeIn() {
                     element.style.opacity = '2';
                 }
@@ -690,19 +739,13 @@ document.addEventListener('DOMContentLoaded', function () {
             if (index !== -1) {
                 allShoes.splice(index, 1);
             }
-
-            creattelento(displayShoes)
-
-
-
-            if (JSON.stringify(shoeFunction.getShoe()) === JSON.stringify({})) {
-                messageElem.classList.add("warning")
-                messageElem.innerHTML = `please enter color size and brand`
-                setTimeout(function () {
-                    messageElem.classList.remove("warning")
-                    messageElem.innerHTML = '';
-                }, 3500);
+            if(searchCheck===""){
+                createDisplayHtml(displayShoes)
+            }else{
+                let filteredShoes = searchShoesByCriteria(searchColor, searchBrand, searchSize);
+                createDisplayHtml(filteredShoes)
             }
+            
 
             const data = { list: shoeFunction.getAllShoe() };
             localStorage.setItem(
@@ -759,7 +802,12 @@ document.addEventListener('DOMContentLoaded', function () {
             returnShoe(objectToRemove, displayShoes)
             localStorage.setItem("theArrayOfShoes", JSON.stringify(displayShoes));
 
-            creattelento(displayShoes)
+            if(searchCheck===""){
+                createDisplayHtml(displayShoes)
+            }else{
+                let filteredShoes = searchShoesByCriteria(searchColor, searchBrand, searchSize);
+                createDisplayHtml(filteredShoes)
+            }
             localStorage.setItem("allTheShoes", JSON.stringify(otherArray));
             createCart(otherArray)
 
@@ -780,7 +828,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 increaseStock(objectToRemove, objectToRemove)
                 IncreaseStock(objectToRemove, shoeFunction.getAllShoe(), objectToRemove.stock, objectToRemove.qty, objectToRemove.ogPrice)
 
-                creattelento(displayShoes)
+                if(searchCheck===""){
+                    createDisplayHtml(displayShoes)
+                }else{
+                    let filteredShoes = searchShoesByCriteria(searchColor, searchBrand, searchSize);
+                    createDisplayHtml(filteredShoes)
+                }
                 localStorage.setItem("allTheShoes", JSON.stringify(otherArray));
                 createCart(otherArray)
                 let currentTotal = parseFloat(totalElem.innerHTML)
@@ -804,7 +857,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (objectToRemove.stock >= 0) {
                     DecreaseStock(objectToRemove, shoeFunction.getAllShoe(), objectToRemove.stock, objectToRemove.qty, objectToRemove.ogPrice)
                 }
-                creattelento(displayShoes)
+                if(searchCheck===""){
+                    createDisplayHtml(displayShoes)
+                }else{
+                    let filteredShoes = searchShoesByCriteria(searchColor, searchBrand, searchSize);
+                    createDisplayHtml(filteredShoes)
+                }
                 localStorage.setItem("allTheShoes", JSON.stringify(otherArray));
                 createCart(otherArray)
                 totalElem.innerHTML = parseFloat(cartItemNumberElement.getAttribute('data-price')) + currentTotal
@@ -819,15 +877,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     });
 
-    const nameofShoe = document.querySelector(".nameofShoe")
-    const colorOfshoe = document.querySelector(".colorOfshoe")
-    const brandofShoe = document.querySelector(".brandofShoe")
-    const photoofShoe = document.querySelector(".photoofShoe")
-    const priceofShoe = document.querySelector(".priceofShoe")
-    const sizeofShoe = document.querySelector(".sizeofShoe")
-    const stockofShoe = document.querySelector(".stockofShoe")
-    const addShoeButton = document.querySelector(".addShoe")
-    const addshoeErrorElem = document.querySelector(".addshoeErrorElem")
+
 
     addShoeButton.addEventListener("click", function () {
         if(nameofShoe.value===""&&colorOfshoe.value===""&&brandofShoe.value===""&&photoofShoe.value===""&& priceofShoe.value===""&&sizeofShoe.value===""&&stockofShoe.value===""){
@@ -895,6 +945,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     element.innerHTML = ""
                 }, 6000);
             }else{
+                
                 shoeFunction.addTheShoe(displayShoes, nameofShoe.value, colorOfshoe.value, brandofShoe.value, photoofShoe.value, priceofShoe.value, sizeofShoe.value, stockofShoe.value)
                 localStorage.setItem("theArrayOfShoes", JSON.stringify(displayShoes));
                 shoes = JSON.parse(localStorage.getItem("theArrayOfShoes"))
@@ -902,7 +953,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 setTimeout(function () {
                     addshoeErrorElem.innerHTML = '';
                 }, 3000);
-                creattelento(displayShoes)
+                createDisplayHtml(displayShoes)
 
                 nameofShoe.value = "";
                 colorOfshoe.value = "";
@@ -928,7 +979,12 @@ checkoutButton.addEventListener("click", function () {
       checkoutShoe(objectToInitialise, displayShoes)
 
     });
-    creattelento(displayShoes)
+    if(searchCheck===""){
+        createDisplayHtml(displayShoes)
+    }else{
+        let filteredShoes = searchShoesByCriteria(searchColor, searchBrand, searchSize);
+        createDisplayHtml(filteredShoes)
+    }
     createCart(otherArray)
   
     ItemContainer.innerHTML = "";

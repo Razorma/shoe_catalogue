@@ -35,6 +35,19 @@ function shoeCatalogue() {
     if (nameshoe === "" || color === "" || brand === "" || photo === "" || price === "" || size === "" || stock === "") {
       addshoeMessage = "please enter all the inputs"
     } else {
+      if(brand.toLowerCase()==="nike"){
+        brand = "Nike"
+      }else if(brand.toLowerCase()==="adidas"){
+        brand = "adidas"
+      }else if(brand.toLowerCase()==="puma"){
+        brand = "Puma"
+      }else if(brand.toLowerCase()==="vans"){
+        brand = "Vans"
+      }else if(brand.toLowerCase()==="all-star"|| brand.toLowerCase()==="all star"){
+        brand = "All-Star"
+      }else if(brand.toLowerCase()==="fila"){
+        brand = "Fila"
+      }
       let newShoe = {
         name: nameshoe,
         color: (color.toLowerCase()),

@@ -22,7 +22,7 @@
       <option value="blue" data-name="blue">blue</option>
       <option value="red" data-name="red">Red</option>
       <option value="yellow" data-name="Red">Yellow</option>
-      <option value="black-and-white" data-name="black and White">black and White</option>
+      <!-- <option value="black-and-white" data-name="black and White">black and White</option> -->
     </select>
     <select id="brandNav" name="brand" class="selectBrandNav">
       <option value="" data-name="brands">Select Brand</option>
@@ -105,7 +105,7 @@
       src="{{this.photo}}" alt="" width="100%">
     </div>
     <div>
-      <p class="">{{this.name}} {{this.stock}}</p>
+      <p class="">{{this.name}}</p>
       <p>R<span  class="prices">{{this.price}}</span> size <span>{{this.size}}</span></p>
       <p class="addSubtract center"><span class="minus">-</span> <span data-object="{{jsonStringify this}}" data-price="{{this.price}}" class="cartItemNumber {{this.name}}">{{this.qty}}</span> <span class="plus">+</span></p>
     </div>
