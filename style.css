@@ -163,6 +163,7 @@ a {
 .cartShoe {
     display: flex;
     justify-content: space-between;
+    padding-right: 15px;
 }
 
 .number {
@@ -404,7 +405,7 @@ select {
         position: sticky;
         top: 5px;
     
-        margin-left: 90%;
+        margin-left: 80%;
     
         margin-top: -23px;
         cursor: pointer;
