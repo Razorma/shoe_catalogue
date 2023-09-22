@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function () {
         orderCart.style.right = "0";
     })
     closeCart.addEventListener("click", function () {
-        orderCart.style.right = "-300px";
+        orderCart.style.right = "-400px";
     })
     gearButton.addEventListener("click", function () {
         settings.style.top = "0";
@@ -127,7 +127,7 @@ document.addEventListener('DOMContentLoaded', function () {
             ogStock: 14
         },
         {
-            name: "All-Star",
+            name: "All Star",
             color: 'blue',
             brand: "All-Star",
             photo: "Photos/Blue all star.jpg",
@@ -246,6 +246,7 @@ document.addEventListener('DOMContentLoaded', function () {
             ogPrice: 950,
             ogStock: 2
         },
+        ///where i left off
         {
             name: "Air Jordan 1",
             color: 'red',
@@ -333,7 +334,7 @@ document.addEventListener('DOMContentLoaded', function () {
         {
             name: "Air Jordan 13",
             color: 'white',
-            brand: "Fila",
+            brand: "Nike",
             photo: "Photos/WHite air jordans 13.jpg",
             price: 950,
             size: 5,

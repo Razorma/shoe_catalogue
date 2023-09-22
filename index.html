@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -6,25 +6,57 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BJ Kicks</title>
-  <link rel="stylesheet" href="style.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <script src="https://kit.fontawesome.com/637f4ab425.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+   
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="shoeLogo"><img src="Photos/BJ online closet.png" alt="" width="25px" class="logoShoe"> </div>
-  
-  <div class="navigation">
-    
-    <select id="colorNav" name="color" class="selectColorNav">
+
+ <nav class="navbar navbar-light fixed-top  navbar-expand-sm p-0 justify-content-space-between bg-dark navbar-dark">
+        <div class="container-fluid">
+          <div class="shoeLogo navbar-text text-light ms-2 navbar-brand h1">BJ Kicks</div>
+          <button 
+          class="navbar-toggler" 
+          type="button" 
+          data-bs-toggle="collapse" 
+          data-bs-target="#navNavbar"
+          aria-controls="navNavbar"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+          >
+          <span class="navbar-toggler-icon "></span>
+          </button>
+          
+          <div class="collapse navbar-collapse justify-content-end" id="navNavbar">
+            
+          <ul class="navbar-nav">
+            <li class="nav-item ">
+              <a class="nav-link text-light" href="#product" onclick="closeNavbar()">Products</a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link text-light" href="#contacts" onclick="closeNavbar()">Contact</a>
+            </li>
+          </ul>
+          </div>
+        </div>
+        
+      </nav>
+  <main class="container-fluid mt-5">
+  <div class="searchBox">
+    <select id="colorNav" name="color" class="m-0 p-0 selectColorNav">
       <option value="" data-name="colors">Select Color</option>
       <option value="black" data-name="Black">Black</option>
       <option value="white" data-name="White">White</option>
       <option value="blue" data-name="blue">blue</option>
       <option value="red" data-name="red">Red</option>
       <option value="yellow" data-name="Red">Yellow</option>
-      <!-- <option value="black-and-white" data-name="black and White">black and White</option> -->
     </select>
-    <select id="brandNav" name="brand" class="selectBrandNav">
+    <select id="brandNav" name="brand" class="m-0 p-0 selectBrandNav">
       <option value="" data-name="brands">Select Brand</option>
       <option value="Nike" data-name="Nike">Nike</option>
       <option value="adidas" data-name="adidas">adidas</option>
@@ -33,20 +65,20 @@
       <option value="All-Star" data-name="All-Star">All Star</option>
       <option value="Fila" data-name="Fila">Fila</option>
     </select>
-    <select id="sizeNav" name="size" class="selectSizeNav">
+    <select id="sizeNav" name="size" class="m-0 p-0 selectSizeNav">
       <option value="" data-name="sizes">Select Size</option>
       <option value="5" data-name="five">5</option>
       <option value="6" data-name="six">6</option>
       <option value="7" data-name="seven">7</option>
       <option value="8" data-name="eight">8</option>
     </select>
-    <input type="button" value="search" class="searchNav">
-    <input type="button" value="Back" class="backNav">
+    <input type="button" value="search" class="m-0 p-0  searchNav">
+    <input type="button" value="Back" class=" m-0 p-0 backNav">
   </div>
+
   <div>
     <h1 class="messageOfShoe center"></h1>
   </div>
-  <div class="main">
     <i class="bi bi-gear-fill"></i>
     <div class="settings">
       <p class="addshoeErrorElem center warning"></p>
@@ -66,9 +98,9 @@
         <i class="bi bi-cart3 openCart"></i>
         <span class="totalCart"></span>
     </div>
-    <div class="orderCart">
+    <div class="m-0 p-0 orderCart">
       
-      <ul class="items" id="items">
+      <ul class="m-0 p-0 items" id="items">
         <i class="bi bi-x closeCart"></i>
         <p class="messageStock center warning"></p>
         <div class="listDiv">
@@ -77,14 +109,28 @@
           </div>
           <div class="Total">Total R<span class="totalElem">0.00</span></div>
           <div class="checkout"><button class="checkoutButton">checkout</button></div>
-
+        </div>
       </ul>
     </div>
 
     <div id="product">
 
     </div>
-  </div>
+    <section id="contacts" class="container">
+      <h1 class="text-center">Contact us</h1>
+      <div class="form-group m-0 mt-2">
+        <label for="name">Name</label>
+        <input type="name" class="form-control" id="name" placeholder="Enter Name">
+      </div>
+      <div class="form-group m-0 mt-2">
+        <label for="email">Email address</label>
+        <input type="email" class="form-control" id="email" placeholder="Enter Name">
+      </div>
+      <div class="form-group mt-2">
+        <label for="texareaMessage">How can we help you</label>
+        <textarea class="form-control" id="texareaMessage" rows="4" placeholder="Enter message"></textarea>
+      </div>
+    </section>
   <script type="text/x-template" class="userTemplate">
 
     {{#each list}}
@@ -114,8 +160,35 @@
     {{/each}}
     
    </script>
+    <footer class=" bg-dark footer-dark">
+    <div class="col contact-links container-fluid justify-content-center">
+      <a href="#"  id="profile-link">
+        <i class="fa-brands fa-linkedin"></i>
+      </a>
+      <a id="profile-link" href="#"  class="contact-details">
+        <i class="fa-brands fa-facebook"></i>
+      </a>
+      <a id="profile-link" href="#" class="contact-details">
+        <i class="fa-solid fa-envelope c-light"></i>
+      </a>
+    </div>
+    <div class="footerMessage">
+      <p>© 2022 BJkicks, Inc. All rights reserved.</p>
+    </div>
+   </footer>
+  </main>
 </body>
 <script src="shoe-catalogue.js" charset="utf-8"></script>
 <script src="Dom/shoe_catalogue.js" charset="utf-8"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<script>
+    function closeNavbar() {
+        var navNavbar = document.getElementById('navNavbar');
+        var bootstrapButton = document.querySelector('.navbar-toggler');
+        if (navNavbar.classList.contains('show')) {
+            bootstrapButton.click(); 
+        }
+    }
+</script>
 
 </html>

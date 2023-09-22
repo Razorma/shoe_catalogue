@@ -10,21 +10,27 @@
     flex-direction: column;
     align-items: center;
     height: 100%;
-    background-color: burlywood;
+    background-color: rgb(255, 255, 255);
 }
-.navigation {
-     background-color: white;
-     height: 100px;
-     width: 100%;
-     display: grid;
-     grid-template-columns: 1fr 1fr;
-     place-items: center;
-     place-content: center;
-     background-image: url(Photos/background\ image.jpg);
-     background-size: cover;
-     background-repeat: no-repeat;
- } 
 
+ main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    background-color: rgb(255, 255, 255);
+    margin-top: 50px;
+ }
+.searchBox{
+    width: 100%;
+    margin-top: 90px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin: 20px 0px;
+    flex-wrap: wrap;
+}
 
 
 .selectColorNav,
@@ -34,9 +40,15 @@
     width: 120px;
     height: 25px;
     margin-bottom: 5px;
+    
+    
 }
 .searchNav {
     margin-bottom: 5px;
+    padding-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .backNav{
     margin-bottom: 0px;
@@ -112,9 +124,12 @@
 
 .buyButton {
     padding: 3px;
-    width: 50px;
+    /* width: 50px; */
+    background-color: rgb(23, 23, 27);
+    color: antiquewhite;
     display: flex;
     flex-direction: column;
+    border-radius: 10px;
 }
 
 .bi-check-circle-fill {
@@ -130,11 +145,16 @@
     color: red;
 }
 
-#busket {
+.photo{
     display: flex;
     flex-direction: column;
-    margin-bottom: 5px;
+    background-color: #fff;
+    border: 1px solid black;
 }
+.photo p{
+    font-weight: 700;
+}
+
 
 .totalCart {
     background-color: red;
@@ -160,6 +180,44 @@ a {
     color: cornsilk;
 }
 
+
+
+.settings {
+    background-color: gray;
+    position: fixed;
+    top: -450px;
+    left: 0;
+    width: 200px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-left: auto;
+    z-index: 2;
+    transition: top 0.8s;
+    list-style: none;
+    color: antiquewhite;
+}
+
+.settings>label {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+#contacts{
+    margin-bottom: 60px;
+    max-width: 500px;
+   }
+.orderCart ul {
+    background-color: gray;
+    position: fixed;
+    top: 50px;
+    right: -400px;
+    width: 400px;
+    z-index: 3;
+    transition: right 0.8s;
+    list-style: none;
+    color: antiquewhite;
+}
 .cartShoe {
     display: flex;
     justify-content: space-between;
@@ -195,56 +253,26 @@ a {
 }
 
 .checkoutButton {
-    width: 300px;
+    width: 100%;
     background-color: yellow;
     padding: 10px;
     font-size: larger;
     font-weight: 900;
 }
 
-#busket {
-    max-height: 75vh;
-    overflow: scroll;
-}
 
+#busket {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5px;
+    max-height: 60vh;
+    overflow: scroll;
+    width: 100%;
+    margin-right: 30px;
+}
 #busket::-webkit-scrollbar {
     display: none;
 }
-
-.settings {
-    background-color: gray;
-    position: fixed;
-    top: -450px;
-    left: 0;
-    width: 200px;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    padding-left: auto;
-    z-index: 2;
-    transition: top 0.8s;
-    list-style: none;
-    color: antiquewhite;
-}
-
-.settings>label {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-}
-
-.orderCart ul {
-    background-color: gray;
-    position: fixed;
-    top: 0;
-    right: -300px;
-    width: 200px;
-    z-index: 2;
-    transition: right 0.8s;
-    list-style: none;
-    color: antiquewhite;
-}
-
 .addSubtract {
     display: flex;
     flex-direction: row;
@@ -259,6 +287,7 @@ a {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin: 5px 5px;
 }
 
 i {
@@ -279,6 +308,7 @@ select {
 .search {
     margin: 10px 0px 10px 20px;
     display: grid;
+    width: 100%;
     place-items: center;
     border: 1px solid #fffb00;
     padding: 8px 12px;
@@ -304,10 +334,14 @@ select {
     place-content: center;
     min-height: 350px;
     grid-column-gap: 10px;
-    margin-top: 100px;
+    /* margin-top: 100px; */
     grid-row-gap: 10px;
     margin-bottom: 100px;
 }
+/* #product button{
+    background-color: #fffb00;
+    display: flex;
+} */
 
 @media(min-width:760px) {
     #product {
@@ -318,19 +352,12 @@ select {
         place-content: center;
         min-height: 350px;
         grid-column-gap: 10px;
-        margin-top: 100px;
+        /* margin-top: 100px; */
         grid-row-gap: 10px;
         margin-bottom: 100px;
     }
     .product {
         display: none;
-    }
-
-    .main {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
     }
 
     .selectors {
@@ -426,12 +453,42 @@ select {
 }
 
 .messageOfShoe {
-    display: block;
-    position: fixed;
-    top: 50%;
-    color: red;
-    cursor: default;
-    opacity: 0;
-    transition: opacity 2s ease-in-out;
+    font-size: medium;
+}
+
+.contact-links{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.contact-links i{
+    font-size: 20px;
+    margin: 10px 30px;
+    transition: transform 0.5s ease;
+}
+.contact-links i:hover {
+    transform: translateY(-5px);
+}
+.textarea{
+    display: flex;
+    flex-direction: column;
+}
+textarea{
+    border: 1px solid rgb(122, 119, 119);
+}
+textarea:active,
+textarea:focus{ 
+  box-shadow:  0px 0px 0px 5px rgba(0, 110, 228, 0.4);
+}
+footer{
+    height: 60px;
+    outline: 1px solid red;
     width: 100%;
+}
+.footerMessage{
+    color: white;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
