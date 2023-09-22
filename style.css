@@ -455,7 +455,9 @@ select {
 .messageOfShoe {
     font-size: medium;
 }
-
+.submitFormBtn{
+    max-width: 100px;
+}
 .contact-links{
     display: flex;
     align-items: center;
