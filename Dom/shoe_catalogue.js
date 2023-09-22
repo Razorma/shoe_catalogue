@@ -868,7 +868,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 createCart(otherArray)
                 totalElem.innerHTML = parseFloat(cartItemNumberElement.getAttribute('data-price')) + currentTotal
             } else {
-                messageStock.innerHTML = `We have only ${objectToRemove.stock} ${objectToRemove.color} "${objectToRemove.name}" left in storage`
+                messageStock.innerHTML = `We have no ${objectToRemove.color} "${objectToRemove.name}" left in storage`
                 setTimeout(function () {
                     messageStock.innerHTML = '';
                 }, 3500);
