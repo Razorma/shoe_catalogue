@@ -79,7 +79,7 @@
   <div>
     <h1 class="messageOfShoe center"></h1>
   </div>
-    <i class="bi bi-gear-fill"></i>
+    <i class="bi bi-gear-fill">ADD Shoes</i>
     <div class="settings">
       <p class="addshoeErrorElem center warning"></p>
       <label for="nameofShoe">Name<input class="nameofShoe" id="nameofShoe" type="text"></label>
@@ -140,7 +140,8 @@
     <div class="photo" data-object="{{jsonStringify this}}"><img class="photos" src="{{this.photo}}" href="" alt="" width="250px" height="250px">
         <div class="price">
             <p class="center name">{{this.name}}</p>
-            <p class="purchase"><span>R<span class="money">{{this.price}}</span></span><span class="Stock">Stock:{{this.stock}}</span><span class="cart" ><button class="buyButton"><i class="bi bi-cart3 cartAdd" >Buy</i><i class="bi bi-check-circle-fill"></i></button></span></p>
+            <p class="displayStockandSize"><span class="Stock">Stock:{{this.stock}}</span><span>Size:{{this.size}}</span></p>
+            <p class="purchase"><span>R<span class="money">{{this.price}}</span></span><span class="cart" ><button class="buyButton"><i class="bi bi-cart3 cartAdd" >ADD</i><i class="bi bi-check-circle-fill"></i></button></span></p>
         </div>
     </div>
     {{/each}}

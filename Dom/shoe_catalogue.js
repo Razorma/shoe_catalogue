@@ -60,10 +60,10 @@ document.addEventListener('DOMContentLoaded', function () {
         orderCart.style.right = "0";
     })
     closeCart.addEventListener("click", function () {
-        orderCart.style.right = "-400px";
+        orderCart.style.right = "-320px";
     })
     gearButton.addEventListener("click", function () {
-        settings.style.top = "0";
+        settings.style.top = "50px";
     })
     closeSettingsButton.addEventListener("click", function () {
         settings.style.top = "-450px";
@@ -90,18 +90,6 @@ document.addEventListener('DOMContentLoaded', function () {
             ogPrice: 750,
             ogStock: 6
         },
-        // {
-        //     name: "Air Jordan 13",
-        //     color: 'black',
-        //     brand: "Nike",
-        //     photo: "Photos/air jordan 13 swed black.jpg",
-        //     price: 650,
-        //     size: 5,
-        //     stock: 9,
-        //     qty: 0,
-        //     ogPrice: 650,
-        //     ogStock: 9
-        // },
         {
             name: "Air Max 90",
             color: 'white',
@@ -246,7 +234,6 @@ document.addEventListener('DOMContentLoaded', function () {
             ogPrice: 950,
             ogStock: 2
         },
-        ///where i left off
         {
             name: "Air Jordan 1",
             color: 'red',
